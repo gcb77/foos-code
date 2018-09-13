@@ -1,0 +1,41 @@
+@startuml
+Class Player {
+ {field} UID
+ {field} Name
+}
+Class Team {
+ {field} UID
+ {field} Players[]
+}
+Class Match {
+ {field} UID
+ {field} Team 1
+ {field} Team 2
+== optional ==
+ {field} Table Number
+ {field} Match Start
+ {field} Match End
+ {field} Winner
+}
+Class Event {
+ {field} UID
+ {field} Name
+..
+(e.g. "Open Singles" or "2 beer DYP")
+..
+}
+Class Tournament {
+  {field} UID
+  {field} Name
+..
+(e.g. "Colorado State 2018" or 
+"Weekly Monday Night at Freddy's")
+..
+  {field} Date
+  {field} Location
+}
+Tournament "1" *-- "many" Event
+Event "1" *-- "many" Match
+Match "1" *-- "2" Team
+Team "1" *-- "4" Player
+@enduml
